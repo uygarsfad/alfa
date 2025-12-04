@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Veliler İçin - Alfabetik.co | Çocuğunuzun YKS Yolculuğunda Destekçisi</title>
-    <meta name="description" content="Alfabetik ile çocuğunuzun YKS hazırlığında yanında olun. Yapay zeka koç Tilki, çocuğunuzun her soruyu analiz eder ve kişiselleştirilmiş program oluşturur.">
-    <meta name="keywords" content="YKS, veli, eğitim, sınav hazırlık, yapay zeka, Alfabetik, Tilki, öğrenci takibi">
+    <meta name="description" content="Alfabetik ile çocuğunuzun YKS hazırlığında yanında olun. Yapay zeka koç Robot, çocuğunuzun her soruyu analiz eder ve kişiselleştirilmiş program oluşturur.">
+    <meta name="keywords" content="YKS, veli, eğitim, sınav hazırlık, yapay zeka, Alfabetik, Robot, öğrenci takibi">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -78,9 +78,75 @@
             padding: 2rem;
             text-align: center;
         }
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            z: 50;
+            padding-top: 80px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 2rem;
+        }
+        .mobile-menu.active {
+            display: flex;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 51;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #1d1d1f;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
         @media (max-width: 768px) {
             .section-title {
-                font-size: 2.5rem;
+                font-size: 2rem;
+            }
+            .section-subtitle {
+                font-size: 1rem;
+            }
+            .hamburger {
+                display: flex;
+            }
+            nav .hidden {
+                display: none !important;
+            }
+            .stat-box {
+                padding: 1.5rem;
+            }
+            .benefit-card {
+                padding: 1.5rem;
+            }
+        }
+        @media (max-width: 640px) {
+            .section-title {
+                font-size: 1.75rem;
+            }
+            .warm-message {
+                font-size: 1rem;
             }
         }
     </style>
@@ -88,7 +154,7 @@
 <body>
 
     <nav class="w-full py-5 px-6 md:px-16 flex justify-between items-center fixed top-0 glass-effect z-50 border-b border-[#e0e7ff]/50">
-        <a href="index.html" class="text-2xl font-semibold tracking-tight text-[#1d1d1f]">
+        <a href="index.html" class="text-xl md:text-2xl font-semibold tracking-tight text-[#1d1d1f]">
             Alfabetik<span class="text-[#86868b]">.co</span>
         </a>
         <div class="hidden md:flex space-x-10 text-sm font-medium text-[#1d1d1f]">
@@ -96,109 +162,130 @@
             <a href="#nasil-calisir" class="hover:text-[#007AFF] transition-colors duration-200">Nasıl Çalışır?</a>
             <a href="#ozellikler" class="hover:text-[#007AFF] transition-colors duration-200">Özellikler</a>
         </div>
-        <a href="#kayit-ol" class="btn-primary px-6 py-2.5 rounded-full text-sm font-semibold">
+        <div class="flex items-center gap-4">
+            <a href="#kayit-ol" class="btn-primary px-4 md:px-6 py-2 md:py-2.5 rounded-full text-xs md:text-sm font-semibold hidden sm:inline-block">
+                Hemen Başla
+            </a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html" class="text-lg font-medium text-[#1d1d1f] hover:text-[#007AFF] transition-colors">Ana Sayfa</a>
+        <a href="#nasil-calisir" class="text-lg font-medium text-[#1d1d1f] hover:text-[#007AFF] transition-colors">Nasıl Çalışır?</a>
+        <a href="#ozellikler" class="text-lg font-medium text-[#1d1d1f] hover:text-[#007AFF] transition-colors">Özellikler</a>
+        <a href="#kayit-ol" class="btn-primary px-8 py-3 rounded-full text-base font-semibold mt-4">
             Hemen Başla
         </a>
-    </nav>
+    </div>
 
-    <section class="pt-40 pb-32 px-6 md:px-16 hero-bg">
+    <section class="pt-32 md:pt-40 pb-20 md:pb-32 px-6 md:px-16 hero-bg">
         <div class="max-w-7xl mx-auto">
-            <div class="max-w-4xl mx-auto text-center mb-16">
-                <div class="mb-8 flex justify-center">
-                    <svg width="150" height="150" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="drop-shadow-2xl" style="filter: drop-shadow(0 10px 30px rgba(255, 107, 53, 0.3));">
+            <div class="max-w-4xl mx-auto text-center mb-12 md:mb-16">
+                <div class="mb-6 md:mb-8 flex justify-center">
+                    <svg width="120" height="120" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="drop-shadow-2xl md:w-[150px] md:h-[150px]" style="filter: drop-shadow(0 10px 30px rgba(0, 122, 255, 0.3));">
                         <defs>
-                            <linearGradient id="foxGradientVeli" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:1" />
-                                <stop offset="50%" style="stop-color:#F7931E;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#FF8C42;stop-opacity:1" />
+                            <linearGradient id="robotGradientVeli" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#007AFF;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#5856D6;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#007AFF;stop-opacity:1" />
                             </linearGradient>
-                            <linearGradient id="foxBodyGradientVeli" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#FF8C42;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#FF6B35;stop-opacity:1" />
+                            <linearGradient id="robotBodyGradientVeli" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#5856D6;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#007AFF;stop-opacity:1" />
                             </linearGradient>
+                            <radialGradient id="eyeGlowVeli" cx="50%" cy="50%">
+                                <stop offset="0%" style="stop-color:#00D4FF;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#007AFF;stop-opacity:0.8" />
+                            </radialGradient>
                         </defs>
-                        <!-- Fox Head - Rounded triangle shape -->
-                        <ellipse cx="100" cy="80" rx="50" ry="45" fill="url(#foxGradientVeli)" stroke="#1d1d1f" stroke-width="2"/>
-                        <!-- Fox Ears - Pointed triangular ears -->
-                        <path d="M 65 50 L 75 25 L 85 50 Z" fill="url(#foxGradientVeli)" stroke="#1d1d1f" stroke-width="2" stroke-linejoin="round"/>
-                        <path d="M 115 50 L 125 25 L 135 50 Z" fill="url(#foxGradientVeli)" stroke="#1d1d1f" stroke-width="2" stroke-linejoin="round"/>
-                        <!-- Inner ear -->
-                        <path d="M 70 45 L 75 30 L 80 45 Z" fill="#FFB380" stroke="#1d1d1f" stroke-width="1"/>
-                        <path d="M 120 45 L 125 30 L 130 45 Z" fill="#FFB380" stroke="#1d1d1f" stroke-width="1"/>
-                        <!-- Fox Face - White muzzle area -->
-                        <ellipse cx="100" cy="95" rx="25" ry="20" fill="white" stroke="#1d1d1f" stroke-width="1.5"/>
-                        <!-- Large expressive eyes -->
-                        <circle cx="88" cy="75" r="8" fill="white" stroke="#1d1d1f" stroke-width="1.5"/>
-                        <circle cx="112" cy="75" r="8" fill="white" stroke="#1d1d1f" stroke-width="1.5"/>
-                        <!-- Eye pupils -->
-                        <circle cx="88" cy="75" r="5" fill="#1d1d1f"/>
-                        <circle cx="112" cy="75" r="5" fill="#1d1d1f"/>
+                        <!-- Robot Head - Square with rounded corners -->
+                        <rect x="60" y="50" width="80" height="70" rx="8" fill="url(#robotGradientVeli)" stroke="#1d1d1f" stroke-width="2"/>
+                        <!-- Antennas -->
+                        <rect x="95" y="30" width="10" height="25" rx="2" fill="url(#robotGradientVeli)" stroke="#1d1d1f" stroke-width="1.5"/>
+                        <circle cx="100" cy="30" r="4" fill="#00D4FF" stroke="#1d1d1f" stroke-width="1"/>
+                        <!-- LED Eyes - Glowing -->
+                        <rect x="75" y="70" width="18" height="18" rx="2" fill="url(#eyeGlowVeli)" stroke="#1d1d1f" stroke-width="1.5"/>
+                        <rect x="107" y="70" width="18" height="18" rx="2" fill="url(#eyeGlowVeli)" stroke="#1d1d1f" stroke-width="1.5"/>
                         <!-- Eye highlights -->
-                        <circle cx="90" cy="73" r="2" fill="white" opacity="0.9"/>
-                        <circle cx="114" cy="73" r="2" fill="white" opacity="0.9"/>
-                        <!-- Nose -->
-                        <ellipse cx="100" cy="98" rx="4" ry="3" fill="#1d1d1f"/>
-                        <!-- Cheerful smile -->
-                        <path d="M 90 105 Q 100 112 110 105" stroke="#1d1d1f" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-                        <!-- Fox Body - Oval shape -->
-                        <ellipse cx="100" cy="140" rx="45" ry="35" fill="url(#foxBodyGradientVeli)" stroke="#1d1d1f" stroke-width="2"/>
-                        <!-- Chest patch -->
-                        <ellipse cx="100" cy="135" rx="20" ry="15" fill="white" opacity="0.8"/>
-                        <!-- Front paws -->
-                        <ellipse cx="80" cy="155" rx="8" ry="12" fill="url(#foxGradientVeli)" stroke="#1d1d1f" stroke-width="1.5"/>
-                        <ellipse cx="120" cy="155" rx="8" ry="12" fill="url(#foxGradientVeli)" stroke="#1d1d1f" stroke-width="1.5"/>
-                        <!-- Fox Tail - Fluffy curved tail -->
-                        <path d="M 145 130 Q 165 120 175 140 Q 170 160 155 165 Q 150 150 145 130" fill="url(#foxGradientVeli)" stroke="#1d1d1f" stroke-width="2" stroke-linejoin="round"/>
-                        <path d="M 155 135 Q 170 130 175 145 Q 172 155 165 160 Q 160 150 155 135" fill="#FFB380" opacity="0.6"/>
-                        <!-- Tail tip - white -->
-                        <ellipse cx="170" cy="145" rx="6" ry="8" fill="white" opacity="0.9"/>
+                        <rect x="78" y="73" width="6" height="6" rx="1" fill="white" opacity="0.9"/>
+                        <rect x="110" y="73" width="6" height="6" rx="1" fill="white" opacity="0.9"/>
+                        <!-- Mouth - LED display -->
+                        <rect x="80" y="95" width="40" height="8" rx="2" fill="#00D4FF" stroke="#1d1d1f" stroke-width="1.5" opacity="0.8"/>
+                        <rect x="85" y="98" width="6" height="2" fill="#007AFF"/>
+                        <rect x="95" y="98" width="6" height="2" fill="#007AFF"/>
+                        <rect x="105" y="98" width="6" height="2" fill="#007AFF"/>
+                        <!-- Robot Body - Rectangular -->
+                        <rect x="50" y="120" width="100" height="60" rx="6" fill="url(#robotBodyGradientVeli)" stroke="#1d1d1f" stroke-width="2"/>
+                        <!-- Chest panel -->
+                        <rect x="70" y="130" width="60" height="40" rx="4" fill="rgba(255,255,255,0.2)" stroke="#1d1d1f" stroke-width="1.5"/>
+                        <!-- Control buttons -->
+                        <circle cx="85" cy="145" r="3" fill="#00D4FF"/>
+                        <circle cx="100" cy="145" r="3" fill="#00D4FF"/>
+                        <circle cx="115" cy="145" r="3" fill="#00D4FF"/>
+                        <!-- Arms -->
+                        <rect x="35" y="125" width="20" height="35" rx="3" fill="url(#robotGradientVeli)" stroke="#1d1d1f" stroke-width="1.5"/>
+                        <rect x="145" y="125" width="20" height="35" rx="3" fill="url(#robotGradientVeli)" stroke="#1d1d1f" stroke-width="1.5"/>
+                        <!-- Hands -->
+                        <rect x="30" y="155" width="12" height="15" rx="2" fill="url(#robotGradientVeli)" stroke="#1d1d1f" stroke-width="1.5"/>
+                        <rect x="158" y="155" width="12" height="15" rx="2" fill="url(#robotGradientVeli)" stroke="#1d1d1f" stroke-width="1.5"/>
+                        <!-- Legs -->
+                        <rect x="60" y="175" width="25" height="20" rx="3" fill="url(#robotBodyGradientVeli)" stroke="#1d1d1f" stroke-width="1.5"/>
+                        <rect x="115" y="175" width="25" height="20" rx="3" fill="url(#robotBodyGradientVeli)" stroke="#1d1d1f" stroke-width="1.5"/>
+                        <!-- Feet -->
+                        <rect x="58" y="192" width="29" height="8" rx="2" fill="url(#robotGradientVeli)" stroke="#1d1d1f" stroke-width="1.5"/>
+                        <rect x="113" y="192" width="29" height="8" rx="2" fill="url(#robotGradientVeli)" stroke="#1d1d1f" stroke-width="1.5"/>
                     </svg>
                 </div>
-                <h1 class="section-title text-[#1d1d1f] mb-6">
+                <h1 class="section-title text-[#1d1d1f] mb-4 md:mb-6">
                     Çocuğunuzun YKS Yolculuğunda<br>
                     <span class="gradient-text">En Güvenilir Destekçisi</span>
                 </h1>
-                <p class="text-xl text-[#86868b] leading-relaxed max-w-3xl mx-auto">
+                <p class="text-base md:text-xl text-[#86868b] leading-relaxed max-w-3xl mx-auto px-4">
                     Alfabetik, çocuğunuzun çözdüğü her soruyu analiz eder, eksiklerini tespit eder ve kişiselleştirilmiş bir çalışma programı oluşturur. Anlamadığı soruları yükleyip yapay zeka ile konuşabilir, detaylı açıklamalar alabilir. Siz de çocuğunuzun ilerlemesini takip edebilir, güvenle destekleyebilirsiniz.
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
                 <div class="stat-box">
-                    <div class="text-5xl font-semibold text-[#007AFF] mb-3">95%</div>
-                    <div class="text-lg font-medium text-[#1d1d1f] mb-2">Başarı Oranı</div>
-                    <div class="text-sm text-[#86868b]">Öğrencilerimizin %95'i hedeflerine ulaşıyor</div>
+                    <div class="text-4xl md:text-5xl font-semibold text-[#007AFF] mb-2 md:mb-3">95%</div>
+                    <div class="text-base md:text-lg font-medium text-[#1d1d1f] mb-1 md:mb-2">Başarı Oranı</div>
+                    <div class="text-xs md:text-sm text-[#86868b]">Öğrencilerimizin %95'i hedeflerine ulaşıyor</div>
                 </div>
                 <div class="stat-box">
-                    <div class="text-5xl font-semibold text-[#007AFF] mb-3">1K+</div>
-                    <div class="text-lg font-medium text-[#1d1d1f] mb-2">Mutlu Aile</div>
-                    <div class="text-sm text-[#86868b]">Binlerce aile bize güveniyor</div>
+                    <div class="text-4xl md:text-5xl font-semibold text-[#007AFF] mb-2 md:mb-3">1K+</div>
+                    <div class="text-base md:text-lg font-medium text-[#1d1d1f] mb-1 md:mb-2">Mutlu Aile</div>
+                    <div class="text-xs md:text-sm text-[#86868b]">Binlerce aile bize güveniyor</div>
                 </div>
                 <div class="stat-box">
-                    <div class="text-5xl font-semibold text-[#007AFF] mb-3">24/7</div>
-                    <div class="text-lg font-medium text-[#1d1d1f] mb-2">Sürekli Destek</div>
-                    <div class="text-sm text-[#86868b]">Her zaman yanınızdayız</div>
+                    <div class="text-4xl md:text-5xl font-semibold text-[#007AFF] mb-2 md:mb-3">24/7</div>
+                    <div class="text-base md:text-lg font-medium text-[#1d1d1f] mb-1 md:mb-2">Sürekli Destek</div>
+                    <div class="text-xs md:text-sm text-[#86868b]">Her zaman yanınızdayız</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="nasil-calisir" class="py-32 bg-gradient-to-b from-white to-[#f0f4ff]">
+    <section id="nasil-calisir" class="py-20 md:py-32 bg-gradient-to-b from-white to-[#f0f4ff]">
         <div class="max-w-7xl mx-auto px-6 md:px-16">
-            <div class="text-center mb-20 max-w-3xl mx-auto">
-                <h2 class="section-title text-[#1d1d1f] mb-6">Nasıl Çalışır?</h2>
+            <div class="text-center mb-12 md:mb-20 max-w-3xl mx-auto">
+                <h2 class="section-title text-[#1d1d1f] mb-4 md:mb-6">Nasıl Çalışır?</h2>
                 <p class="section-subtitle">Çocuğunuz için sadece 3 basit adım. Her adımda yanınızdayız.</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-6xl mx-auto">
                 <div class="relative flex flex-col">
                     <div class="w-16 h-16 bg-gradient-to-br from-[#007AFF] to-[#5856D6] rounded-full flex items-center justify-center text-white text-2xl font-semibold mb-6 mx-auto shadow-lg">
                         1
                     </div>
-                    <div class="p-10 rounded-3xl bg-white border border-[#e0e7ff] soft-shadow flex flex-col h-full text-center">
-                        <div class="text-5xl mb-6">📸</div>
-                        <h3 class="text-2xl font-semibold mb-4 text-[#1d1d1f]">Fotoğraf Yükle</h3>
-                        <p class="text-[#86868b] text-base leading-relaxed flex-grow">
+                    <div class="p-6 md:p-10 rounded-3xl bg-white border border-[#e0e7ff] soft-shadow flex flex-col h-full text-center">
+                        <div class="text-4xl md:text-5xl mb-4 md:mb-6">📸</div>
+                        <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-[#1d1d1f]">Fotoğraf Yükle</h3>
+                        <p class="text-[#86868b] text-sm md:text-base leading-relaxed flex-grow">
                             Çocuğunuz çözdüğü deneme ve testlerin fotoğraflarını çeker. TYT, AYT, branş denemeleri ve konu testlerini uygulamaya yükler. Her şeyi tek bir yerden, güvenle yönetir.
                         </p>
                     </div>
@@ -208,10 +295,10 @@
                     <div class="w-16 h-16 bg-gradient-to-br from-[#007AFF] to-[#5856D6] rounded-full flex items-center justify-center text-white text-2xl font-semibold mb-6 mx-auto shadow-lg">
                         2
                     </div>
-                    <div class="p-10 rounded-3xl bg-white border border-[#e0e7ff] soft-shadow flex flex-col h-full text-center">
-                        <div class="text-5xl mb-6">🤖</div>
-                        <h3 class="text-2xl font-semibold mb-4 text-[#1d1d1f]">Yapay Zeka Analiz Eder</h3>
-                        <p class="text-[#86868b] text-base leading-relaxed flex-grow">
+                    <div class="p-6 md:p-10 rounded-3xl bg-white border border-[#e0e7ff] soft-shadow flex flex-col h-full text-center">
+                        <div class="text-4xl md:text-5xl mb-4 md:mb-6">🤖</div>
+                        <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-[#1d1d1f]">Yapay Zeka Analiz Eder</h3>
+                        <p class="text-[#86868b] text-sm md:text-base leading-relaxed flex-grow">
                             Yapay zeka, yüklenen tüm denemeleri özenle analiz eder. Çözdüğü her soruyu, her konuyu detaylıca inceler ve eksiklerini tespit eder. Anlamadığı soruları yükleyip yapay zeka ile konuşabilir.
                         </p>
                     </div>
@@ -221,10 +308,10 @@
                     <div class="w-16 h-16 bg-gradient-to-br from-[#007AFF] to-[#5856D6] rounded-full flex items-center justify-center text-white text-2xl font-semibold mb-6 mx-auto shadow-lg">
                         3
                     </div>
-                    <div class="p-10 rounded-3xl bg-white border border-[#e0e7ff] soft-shadow flex flex-col h-full text-center">
-                        <div class="text-5xl mb-6">🎯</div>
-                        <h3 class="text-2xl font-semibold mb-4 text-[#1d1d1f]">Konu Önceliği Öğren</h3>
-                        <p class="text-[#86868b] text-base leading-relaxed flex-grow">
+                    <div class="p-6 md:p-10 rounded-3xl bg-white border border-[#e0e7ff] soft-shadow flex flex-col h-full text-center">
+                        <div class="text-4xl md:text-5xl mb-4 md:mb-6">🎯</div>
+                        <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-[#1d1d1f]">Konu Önceliği Öğren</h3>
+                        <p class="text-[#86868b] text-sm md:text-base leading-relaxed flex-grow">
                             TYT, AYT, branş denemeleri ve konu testlerinde net kazanmak için hangi konulara öncelik vermesi gerektiğini öğrenir. Hangi konudan kaç net çıkarabileceğini görür ve kişiselleştirilmiş çalışma programı alır.
                         </p>
                     </div>
@@ -233,66 +320,66 @@
         </div>
     </section>
 
-    <section id="ozellikler" class="py-32 bg-white">
+    <section id="ozellikler" class="py-20 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6 md:px-16">
-            <div class="text-center mb-20 max-w-3xl mx-auto">
-                <h2 class="section-title text-[#1d1d1f] mb-6">Neden Alfabetik?</h2>
+            <div class="text-center mb-12 md:mb-20 max-w-3xl mx-auto">
+                <h2 class="section-title text-[#1d1d1f] mb-4 md:mb-6">Neden Alfabetik?</h2>
                 <p class="section-subtitle">Çocuğunuzun başarısı için ihtiyaç duyduğu her şey burada.</p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-                <div class="benefit-card p-10 rounded-3xl">
-                    <div class="text-5xl mb-6">📊</div>
-                    <h3 class="text-2xl font-semibold mb-4 text-[#1d1d1f]">Her Soru Analiz Edilir</h3>
-                    <p class="text-[#86868b] text-base leading-relaxed">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 max-w-6xl mx-auto">
+                <div class="benefit-card p-6 md:p-10 rounded-3xl">
+                    <div class="text-4xl md:text-5xl mb-4 md:mb-6">📊</div>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-[#1d1d1f]">Her Soru Analiz Edilir</h3>
+                    <p class="text-[#86868b] text-sm md:text-base leading-relaxed">
                         Çocuğunuz TYT, AYT, branş denemeleri ve konu testlerini yükler. Yapay zeka çözdüğü her soruyu analiz eder. Süreçteki tüm sorular değerlendirilir, hiçbir eksik gözden kaçmaz.
                     </p>
                 </div>
 
-                <div class="benefit-card p-10 rounded-3xl">
-                    <div class="text-5xl mb-6">🎯</div>
-                    <h3 class="text-2xl font-semibold mb-4 text-[#1d1d1f]">Kişiselleştirilmiş Program</h3>
-                    <p class="text-[#86868b] text-base leading-relaxed">
+                <div class="benefit-card p-6 md:p-10 rounded-3xl">
+                    <div class="text-4xl md:text-5xl mb-4 md:mb-6">🎯</div>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-[#1d1d1f]">Kişiselleştirilmiş Program</h3>
+                    <p class="text-[#86868b] text-sm md:text-base leading-relaxed">
                         Her öğrenci farklıdır. Alfabetik, çocuğunuzun eksiklerine göre özel bir çalışma programı oluşturur. Hangi konuya ne kadar süre ayırması gerektiğini belirler.
                     </p>
                 </div>
 
-                <div class="benefit-card p-10 rounded-3xl">
-                    <div class="text-5xl mb-6">📈</div>
-                    <h3 class="text-2xl font-semibold mb-4 text-[#1d1d1f]">İlerlemeyi Takip Edin</h3>
-                    <p class="text-[#86868b] text-base leading-relaxed">
+                <div class="benefit-card p-6 md:p-10 rounded-3xl">
+                    <div class="text-4xl md:text-5xl mb-4 md:mb-6">📈</div>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-[#1d1d1f]">İlerlemeyi Takip Edin</h3>
+                    <p class="text-[#86868b] text-sm md:text-base leading-relaxed">
                         Çocuğunuzun performansını detaylı raporlarla takip edebilirsiniz. Hangi konularda ilerleme kaydettiğini, hangi konularda desteğe ihtiyacı olduğunu görürsünüz.
                     </p>
                 </div>
 
-                <div class="benefit-card p-10 rounded-3xl">
-                    <div class="text-5xl mb-6">💬</div>
-                    <h3 class="text-2xl font-semibold mb-4 text-[#1d1d1f]">Tilki ile Konuş</h3>
-                    <p class="text-[#86868b] text-base leading-relaxed">
-                        Tilki, çocuğunuzun her zaman yanında. Takıldığı sorularda, anlamadığı konularda yardımcı olur. Anlamadığı soruları yükleyip Tilki ile konuşabilir. Motivasyon düştüğünde destekler, plan yaparken rehberlik eder.
+                <div class="benefit-card p-6 md:p-10 rounded-3xl">
+                    <div class="text-4xl md:text-5xl mb-4 md:mb-6">💬</div>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-[#1d1d1f]">Robot ile Konuş</h3>
+                    <p class="text-[#86868b] text-sm md:text-base leading-relaxed">
+                        Robot, çocuğunuzun her zaman yanında. Takıldığı sorularda, anlamadığı konularda yardımcı olur. Anlamadığı soruları yükleyip Robot ile konuşabilir. Motivasyon düştüğünde destekler, plan yaparken rehberlik eder.
                     </p>
                 </div>
 
-                <div class="benefit-card p-10 rounded-3xl">
-                    <div class="text-5xl mb-6">🔒</div>
-                    <h3 class="text-2xl font-semibold mb-4 text-[#1d1d1f]">Güvenli ve Şifreli</h3>
-                    <p class="text-[#86868b] text-base leading-relaxed">
+                <div class="benefit-card p-6 md:p-10 rounded-3xl">
+                    <div class="text-4xl md:text-5xl mb-4 md:mb-6">🔒</div>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-[#1d1d1f]">Güvenli ve Şifreli</h3>
+                    <p class="text-[#86868b] text-sm md:text-base leading-relaxed">
                         Çocuğunuzun tüm verileri güvende. Şifreli sistem, gizlilik politikası ve güvenlik standartları ile verileriniz korunur. Siz rahat olun, biz güvenliğe önem veriyoruz.
                     </p>
                 </div>
 
-                <div class="benefit-card p-10 rounded-3xl">
-                    <div class="text-5xl mb-6">⏰</div>
-                    <h3 class="text-2xl font-semibold mb-4 text-[#1d1d1f]">Zaman Tasarrufu</h3>
-                    <p class="text-[#86868b] text-base leading-relaxed">
+                <div class="benefit-card p-6 md:p-10 rounded-3xl">
+                    <div class="text-4xl md:text-5xl mb-4 md:mb-6">⏰</div>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-[#1d1d1f]">Zaman Tasarrufu</h3>
+                    <p class="text-[#86868b] text-sm md:text-base leading-relaxed">
                         Çocuğunuz hangi konuya çalışması gerektiğini bilir. Gereksiz tekrarlar yapmaz, en verimli şekilde çalışır. Siz de endişelenmez, güvenle desteklersiniz.
                     </p>
                 </div>
 
-                <div class="benefit-card p-10 rounded-3xl">
-                    <div class="text-5xl mb-6">💡</div>
-                    <h3 class="text-2xl font-semibold mb-4 text-[#1d1d1f]">Yapay Zeka Destekli Soru Çözümü</h3>
-                    <p class="text-[#86868b] text-base leading-relaxed">
+                <div class="benefit-card p-6 md:p-10 rounded-3xl">
+                    <div class="text-4xl md:text-5xl mb-4 md:mb-6">💡</div>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-[#1d1d1f]">Yapay Zeka Destekli Soru Çözümü</h3>
+                    <p class="text-[#86868b] text-sm md:text-base leading-relaxed">
                         Çocuğunuz bir soruyu anlamadığında soruyu yükleyebilir ve yapay zeka ile konuşabilir. Soru hakkında daha fazla bilgi alabilir, detaylı açıklamalar isteyebilir. Anlamadığı noktaları sorabilir.
                     </p>
                 </div>
@@ -300,68 +387,68 @@
         </div>
     </section>
 
-    <section class="py-32 trust-section">
+    <section class="py-20 md:py-32 trust-section">
         <div class="max-w-7xl mx-auto px-6 md:px-16">
             <div class="max-w-4xl mx-auto">
-                <h2 class="section-title text-[#1d1d1f] mb-8 text-center">Çocuğunuz İçin Neden Önemli?</h2>
+                <h2 class="section-title text-[#1d1d1f] mb-6 md:mb-8 text-center">Çocuğunuz İçin Neden Önemli?</h2>
                 
-                <div class="space-y-8">
-                    <div class="bg-white p-8 rounded-3xl border border-[#e0e7ff]">
-                        <h3 class="text-2xl font-semibold mb-4 text-[#1d1d1f] flex items-center gap-3">
-                            <span class="text-3xl">🎓</span>
+                <div class="space-y-6 md:space-y-8">
+                    <div class="bg-white p-6 md:p-8 rounded-3xl border border-[#e0e7ff]">
+                        <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-[#1d1d1f] flex items-center gap-3">
+                            <span class="text-2xl md:text-3xl">🎓</span>
                             Eksiklerini Net Görür
                         </h3>
-                        <p class="text-[#86868b] text-base leading-relaxed">
+                        <p class="text-[#86868b] text-sm md:text-base leading-relaxed">
                             Çocuğunuz hangi konuda eksiği olduğunu bilmeden çalışırsa zaman kaybeder. Alfabetik, çözdüğü her soruyu analiz ederek eksiklerini net bir şekilde gösterir. Böylece en verimli şekilde çalışır.
                         </p>
                     </div>
 
-                    <div class="bg-white p-8 rounded-3xl border border-[#e0e7ff]">
-                        <h3 class="text-2xl font-semibold mb-4 text-[#1d1d1f] flex items-center gap-3">
-                            <span class="text-3xl">📋</span>
+                    <div class="bg-white p-6 md:p-8 rounded-3xl border border-[#e0e7ff]">
+                        <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-[#1d1d1f] flex items-center gap-3">
+                            <span class="text-2xl md:text-3xl">📋</span>
                             Plan Yapmakta Zorlanmaz
                         </h3>
-                        <p class="text-[#86868b] text-base leading-relaxed">
+                        <p class="text-[#86868b] text-sm md:text-base leading-relaxed">
                             Birçok öğrenci plan yapmakta zorlanır. Alfabetik, yapay zeka ile çocuğunuz için kişiselleştirilmiş bir çalışma planı oluşturur. Hangi konuya ne kadar süre ayırması gerektiğini bilir.
                         </p>
                     </div>
 
-                    <div class="bg-white p-8 rounded-3xl border border-[#e0e7ff]">
-                        <h3 class="text-2xl font-semibold mb-4 text-[#1d1d1f] flex items-center gap-3">
-                            <span class="text-3xl">💪</span>
+                    <div class="bg-white p-6 md:p-8 rounded-3xl border border-[#e0e7ff]">
+                        <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-[#1d1d1f] flex items-center gap-3">
+                            <span class="text-2xl md:text-3xl">💪</span>
                             Motivasyonu Korunur
                         </h3>
-                        <p class="text-[#86868b] text-base leading-relaxed">
-                            YKS süreci zorlu bir yolculuk. Tilki, çocuğunuzun motivasyonunu korur, destekler ve rehberlik eder. Takıldığı yerlerde yardımcı olur, başarılarını kutlar.
+                        <p class="text-[#86868b] text-sm md:text-base leading-relaxed">
+                            YKS süreci zorlu bir yolculuk. Robot, çocuğunuzun motivasyonunu korur, destekler ve rehberlik eder. Takıldığı yerlerde yardımcı olur, başarılarını kutlar.
                         </p>
                     </div>
 
-                    <div class="bg-white p-8 rounded-3xl border border-[#e0e7ff]">
-                        <h3 class="text-2xl font-semibold mb-4 text-[#1d1d1f] flex items-center gap-3">
-                            <span class="text-3xl">⚡</span>
+                    <div class="bg-white p-6 md:p-8 rounded-3xl border border-[#e0e7ff]">
+                        <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-[#1d1d1f] flex items-center gap-3">
+                            <span class="text-2xl md:text-3xl">⚡</span>
                             Zamanını Verimli Kullanır
                         </h3>
-                        <p class="text-[#86868b] text-base leading-relaxed">
+                        <p class="text-[#86868b] text-sm md:text-base leading-relaxed">
                             Alfabetik, çocuğunuzun hangi konuya çalışırsa kaç net kazanabileceğini hesaplar. En çok net getirecek konulara öncelik verir. Böylece zamanını en verimli şekilde kullanır.
                         </p>
                     </div>
 
-                    <div class="bg-white p-8 rounded-3xl border border-[#e0e7ff]">
-                        <h3 class="text-2xl font-semibold mb-4 text-[#1d1d1f] flex items-center gap-3">
-                            <span class="text-3xl">⭐</span>
+                    <div class="bg-white p-6 md:p-8 rounded-3xl border border-[#e0e7ff]">
+                        <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-[#1d1d1f] flex items-center gap-3">
+                            <span class="text-2xl md:text-3xl">⭐</span>
                             Kritik Soruları Tekrar Eder
                         </h3>
-                        <p class="text-[#86868b] text-base leading-relaxed">
+                        <p class="text-[#86868b] text-sm md:text-base leading-relaxed">
                             Çocuğunuzun yanlış yaptığı veya önemli olan sorular otomatik olarak "Kritik Sorular" bölümünde toplanır. Bu soruları tekrar çözerek eksiklerini kapatır, bilgisini pekiştirir.
                         </p>
                     </div>
 
-                    <div class="bg-white p-8 rounded-3xl border border-[#e0e7ff]">
-                        <h3 class="text-2xl font-semibold mb-4 text-[#1d1d1f] flex items-center gap-3">
-                            <span class="text-3xl">💡</span>
+                    <div class="bg-white p-6 md:p-8 rounded-3xl border border-[#e0e7ff]">
+                        <h3 class="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-[#1d1d1f] flex items-center gap-3">
+                            <span class="text-2xl md:text-3xl">💡</span>
                             Anlamadığı Soruları Çözebilir
                         </h3>
-                        <p class="text-[#86868b] text-base leading-relaxed">
+                        <p class="text-[#86868b] text-sm md:text-base leading-relaxed">
                             Çocuğunuz bir soruyu anlamadığında soruyu yükleyip yapay zeka ile konuşabilir. Soru hakkında daha fazla bilgi alabilir, detaylı açıklamalar isteyebilir, anlamadığı noktaları sorabilir. Yapay zeka ona yardımcı olur ve öğrenmesini destekler.
                         </p>
                     </div>
@@ -370,22 +457,22 @@
         </div>
     </section>
 
-    <section class="py-32 bg-white">
+    <section class="py-20 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-6 md:px-16">
             <div class="max-w-4xl mx-auto">
-                <h2 class="section-title text-[#1d1d1f] mb-8 text-center">Sıkça Sorulan Sorular</h2>
+                <h2 class="section-title text-[#1d1d1f] mb-6 md:mb-8 text-center">Sıkça Sorulan Sorular</h2>
                 
-                <div class="space-y-6">
-                    <div class="bg-[#fafafa] p-8 rounded-2xl border border-[#e0e7ff]">
-                        <h3 class="text-xl font-semibold mb-3 text-[#1d1d1f]">Çocuğumun verileri güvende mi?</h3>
-                        <p class="text-[#86868b] text-base leading-relaxed">
+                <div class="space-y-4 md:space-y-6">
+                    <div class="bg-[#fafafa] p-6 md:p-8 rounded-2xl border border-[#e0e7ff]">
+                        <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3 text-[#1d1d1f]">Çocuğumun verileri güvende mi?</h3>
+                        <p class="text-[#86868b] text-sm md:text-base leading-relaxed">
                             Evet, kesinlikle. Tüm veriler şifreli olarak saklanır ve gizlilik politikamıza uygun olarak korunur. Çocuğunuzun bilgileri sadece analiz için kullanılır, üçüncü taraflarla paylaşılmaz.
                         </p>
                     </div>
 
-                    <div class="bg-[#fafafa] p-8 rounded-2xl border border-[#e0e7ff]">
-                        <h3 class="text-xl font-semibold mb-3 text-[#1d1d1f]">Çocuğumun ilerlemesini nasıl takip edebilirim?</h3>
-                        <p class="text-[#86868b] text-base leading-relaxed">
+                    <div class="bg-[#fafafa] p-6 md:p-8 rounded-2xl border border-[#e0e7ff]">
+                        <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3 text-[#1d1d1f]">Çocuğumun ilerlemesini nasıl takip edebilirim?</h3>
+                        <p class="text-[#86868b] text-sm md:text-base leading-relaxed">
                             Detaylı performans raporları ile çocuğunuzun ilerlemesini takip edebilirsiniz. Hangi konularda başarılı olduğunu, hangi konularda desteğe ihtiyacı olduğunu görebilirsiniz.
                         </p>
                     </div>
@@ -422,10 +509,10 @@
         </div>
     </section>
 
-    <section id="kayit-ol" class="py-32 bg-gradient-to-br from-[#007AFF] to-[#5856D6] text-white">
+    <section id="kayit-ol" class="py-20 md:py-32 bg-gradient-to-br from-[#007AFF] to-[#5856D6] text-white">
         <div class="max-w-4xl mx-auto px-6 md:px-16 text-center">
-            <h2 class="section-title text-white mb-6">Çocuğunuzun Başarısı İçin Hemen Başlayın</h2>
-            <p class="text-xl text-white/90 mb-10 max-w-2xl mx-auto leading-relaxed">
+            <h2 class="section-title text-white mb-4 md:mb-6">Çocuğunuzun Başarısı İçin Hemen Başlayın</h2>
+            <p class="text-base md:text-xl text-white/90 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
                 Alfabetik ile çocuğunuzun YKS yolculuğunda yanında olun. Erken erişim listesine katılın ve özel avantajlardan yararlanın.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
@@ -433,12 +520,12 @@
                     <input 
                         type="email" 
                         placeholder="E-posta adresiniz" 
-                        class="flex-1 px-6 py-4 rounded-2xl border-0 focus:outline-none focus:ring-2 focus:ring-white/50 text-[#1d1d1f] bg-white" 
+                        class="flex-1 px-4 md:px-6 py-3 md:py-4 rounded-2xl border-0 focus:outline-none focus:ring-2 focus:ring-white/50 text-[#1d1d1f] bg-white text-sm md:text-base" 
                         required
                     >
                     <button 
                         type="submit" 
-                        class="bg-white text-[#007AFF] px-10 py-4 rounded-2xl font-semibold hover:bg-gray-50 transition-all shadow-lg hover:shadow-xl whitespace-nowrap"
+                        class="bg-white text-[#007AFF] px-6 md:px-10 py-3 md:py-4 rounded-2xl font-semibold hover:bg-gray-50 transition-all shadow-lg hover:shadow-xl whitespace-nowrap text-sm md:text-base"
                     >
                         Hemen Kayıt Ol
                     </button>
@@ -448,16 +535,16 @@
         </div>
     </section>
 
-    <footer class="bg-[#1d1d1f] text-white py-16 border-t border-gray-800">
+    <footer class="bg-[#1d1d1f] text-white py-12 md:py-16 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-6 md:px-16">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
-                <div class="mb-8 md:mb-0">
-                    <span class="text-3xl font-semibold">Alfabetik<span class="text-gray-400">.co</span></span>
-                    <p class="text-gray-400 text-base mt-2">Geleceğin üniversitelileri için tasarlandı. Çocuğunuz için buradayız.</p>
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 md:mb-12">
+                <div class="mb-6 md:mb-0">
+                    <span class="text-2xl md:text-3xl font-semibold">Alfabetik<span class="text-gray-400">.co</span></span>
+                    <p class="text-gray-400 text-sm md:text-base mt-2">Geleceğin üniversitelileri için tasarlandı. Çocuğunuz için buradayız.</p>
                 </div>
-                <div class="flex space-x-8">
-                    <a href="index.html" class="text-gray-400 hover:text-white transition-colors">Ana Sayfa</a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">İletişim</a>
+                <div class="flex flex-col sm:flex-row gap-4 sm:space-x-8">
+                    <a href="index.html" class="text-gray-400 hover:text-white transition-colors text-sm md:text-base">Ana Sayfa</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm md:text-base">İletişim</a>
                 </div>
             </div>
             <div class="text-center text-gray-500 text-sm pt-8 border-t border-gray-800">
@@ -497,6 +584,13 @@
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
+                    // Mobil menüyü kapat
+                    const mobileMenu = document.getElementById('mobileMenu');
+                    const hamburger = document.getElementById('hamburger');
+                    if (mobileMenu && hamburger) {
+                        mobileMenu.classList.remove('active');
+                        hamburger.classList.remove('active');
+                    }
                     target.scrollIntoView({
                         behavior: 'smooth',
                         block: 'start'
@@ -504,6 +598,25 @@
                 }
             });
         });
+
+        // Hamburger menü toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        if (hamburger && mobileMenu) {
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+            });
+            
+            // Menü dışına tıklanınca kapat
+            mobileMenu.addEventListener('click', function(e) {
+                if (e.target === mobileMenu) {
+                    mobileMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+            });
+        }
     </script>
 
 </body>
